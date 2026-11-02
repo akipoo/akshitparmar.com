@@ -11,7 +11,7 @@
 <meta property="og:title" content="Ar. Akshit Suraj Parmar · Architect & developer">
 <meta property="og:description" content="I build homes that are meant to keep working long after the keys are handed over.">
 <meta property="og:url" content="https://akshitparmar.com/">
-<meta property="og:image" content="https://akshitparmar.com/img/akshit-suraj-parmar.webp">
+<meta property="og:image" content="https://akshitparmar.com/img/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://akshitparmar.com/">
 <link rel="alternate" type="text/markdown" title="LLM summary" href="/llms.txt">
@@ -85,7 +85,7 @@
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "Who is Akshit Suraj Parmar?", "acceptedAnswer": {"@type": "Answer", "text": "Ar. Akshit Suraj Parmar is an architect and real estate developer. He is Projects Director at House of Cosmos, which he runs with his brother Abhishek Parmar, and he is building Trividh, his pilot project."}},
+        {"@type": "Question", "name": "Who is Akshit Suraj Parmar?", "acceptedAnswer": {"@type": "Answer", "text": "Ar. Akshit Suraj Parmar is an architect and real estate developer with a Master's in design and construction from the Netherlands. He is Projects Director at House of Cosmos, which he runs with his brother Abhishek Parmar, and he is building Trividh, his pilot project."}},
         {"@type": "Question", "name": "Is Akshit Parmar the son of Suraj Parmar of Cosmos Group?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Suraj Parmar founded the Cosmos legacy in 2000. House of Cosmos is the next chapter of the Cosmos legacy, founded in 2000 by Suraj Parmar and now led by his sons, Ar. Akshit Suraj Parmar and Abhishek Parmar, building on the principles he was known for."}},
         {"@type": "Question", "name": "What is Trividh?", "acceptedAnswer": {"@type": "Answer", "text": "Trividh is a House of Cosmos residential building and Akshit's pilot project. It has an art deco design, nests for birds built into its facade, and a water system that reuses 90% of its grey and rainwater."}},
         {"@type": "Question", "name": "How do I contact Akshit Parmar?", "acceptedAnswer": {"@type": "Answer", "text": "Call House of Cosmos on +91 99202 79296, email contact@houseofcosmos.co, or visit the office at Arihant Building, 201, Agyari Lane, Tembhi Naka, Thane West 400601."}}
@@ -114,21 +114,11 @@
   --f-sans:"Bricolage Grotesque", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
   --f-mono:"Martian Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
   --greyw:#7C80AA; --rain:#2A9BC2; --scan:#FFFFFF;
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --ground:#121312; --raised:#1B1D1B; --ink:#ECEDE8; --dim:#8F948D; --line:rgba(236,237,232,.13);
-    --green:#5BBF97; --green-soft:rgba(91,191,151,.16); --signal:#FF5B3F; --sun:#F2B23D; --water:#6E9BFF;
-    --board:#1A1918; --board-ink:#EDEBE6; --greyw:#A9ADDB; --rain:#5FCBEB; --scan:#F1EFEA; color-scheme:dark;
-  }
-}
-:root[data-theme="dark"]{
-  --ground:#121312; --raised:#1B1D1B; --ink:#ECEDE8; --dim:#8F948D; --line:rgba(236,237,232,.13);
-  --green:#5BBF97; --green-soft:rgba(91,191,151,.16); --signal:#FF5B3F; --sun:#F2B23D; --water:#6E9BFF;
-  --board:#1A1918; --board-ink:#EDEBE6; --greyw:#A9ADDB; --rain:#5FCBEB; --scan:#F1EFEA; color-scheme:dark;
+  color-scheme:light;
 }
 
 *{box-sizing:border-box}
+html{scroll-padding-top:72px}
 body{background:var(--ground);color:var(--ink);font:400 1.06rem/1.6 var(--f-sans);font-optical-sizing:auto;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--ground)}
 a{color:inherit;text-decoration-thickness:1.5px;text-underline-offset:4px;text-decoration-color:var(--green)}
@@ -148,40 +138,48 @@ h3{font-weight:650;font-size:1.25rem;letter-spacing:-.01em;line-height:1.2}
 .hl{background:linear-gradient(transparent 58%, var(--green-soft) 58%)}
 .todo{font-family:var(--f-mono);font-size:.68rem;background:rgba(216,150,30,.2);border:1px dashed var(--sun);padding:1px 6px;border-radius:4px;white-space:nowrap}
 
-/* top bar */
-.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb, var(--ground) 86%, transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.bar .wrap{display:flex;align-items:center;gap:16px;padding-block:12px}
-.bar .me{font-family:var(--f-dot);font-weight:900;font-size:1.35rem;letter-spacing:.1em;text-decoration:none;margin-right:auto}
-.clock{display:flex;align-items:center;gap:8px;color:var(--dim)}
-.clock i{width:7px;height:7px;border-radius:50%;background:var(--signal);animation:blink 2s steps(2,start) infinite}
-@keyframes blink{50%{opacity:.15}}
+/* top bar: floats over the film, turns into a light bar once you scroll past it */
+.bar{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:20;background:transparent;border-bottom:1px solid transparent;transition:background .35s,border-color .35s,backdrop-filter .35s}
+.bar .wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;padding-block:16px;transition:padding .35s}
+.bar .me{font-family:var(--f-dot);font-weight:900;font-size:1.35rem;letter-spacing:.1em;line-height:1;text-decoration:none;color:var(--ink);justify-self:start}
+.bar .me span{display:none}
+.bar nav{display:flex;gap:clamp(16px,2.4vw,30px)}
+.bar nav a{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:rgba(17,19,17,.7)}
+.bar nav a:hover{color:var(--ink)}
+.bar .pill{justify-self:end;background:rgba(232,233,228,.55);color:var(--ink);box-shadow:inset 0 0 0 1px rgba(17,19,17,.35);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.bar .pill:hover{background:var(--ink);color:var(--ground)}
+.bar.solid{background:color-mix(in srgb, var(--ground) 88%, transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom-color:var(--line)}
+.bar.solid .wrap{padding-block:10px}
+.bar.solid .pill{background:var(--ink);color:var(--ground);box-shadow:none}
+.bar.solid .pill:hover{background:var(--green)}
+@media (max-width:760px){.bar nav{display:none}.bar .wrap{grid-template-columns:1fr auto}.bar .me span{display:none}}
 .pill{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;background:var(--ink);color:var(--ground);font-family:var(--f-mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;text-decoration:none;border:0;cursor:pointer}
 .pill:hover{background:var(--green);color:var(--ground)}
 .pill.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
 .pill.ghost:hover{box-shadow:inset 0 0 0 1.5px var(--green);color:var(--green)}
-@media (max-width:560px){.clock{display:none}}
 .pill{white-space:nowrap}
 
-/* hero */
-.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
-#field{position:absolute;inset:0;width:100%;height:100%;display:block}
-.hero .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.8fr);gap:clamp(24px,5vw,72px);align-items:end;padding-block:clamp(36px,7vw,96px) clamp(36px,6vw,72px)}
-@media (max-width:860px){.hero .wrap{grid-template-columns:minmax(0,1fr)}}
-.hero .ar{font-family:var(--f-mono);font-size:.8rem;color:var(--green);letter-spacing:.06em}
-.hero h1{font-family:var(--f-dot);font-weight:900;text-transform:uppercase;font-size:clamp(3rem,11.5vw,8.6rem);line-height:.86;letter-spacing:.01em;margin-top:14px}
-.hero h1 span{display:block}
-.hero h1 .pre{text-transform:none;font-family:var(--f-mono);font-weight:500;font-size:.16em;letter-spacing:.04em;color:var(--green);vertical-align:top;margin-right:.35em;position:relative;top:.5em}
-.hero h1 .small{font-size:.5em;letter-spacing:.06em;color:var(--dim);margin-top:.18em}
-.hero .intro{font-size:clamp(1.15rem,2.2vw,1.45rem);line-height:1.45;margin-top:26px;max-width:32ch;letter-spacing:-.01em}
-.hero .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+/* film hero: full-bleed generated film of a city growing around Akshit at work */
+.film{position:relative;height:min(88svh,880px);min-height:560px;overflow:hidden;background:#c9c6bd}
+.film video,.film img.still{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 70%}
+.film::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(232,233,228,.78) 0%,rgba(232,233,228,.35) 26%,rgba(232,233,228,0) 46%,rgba(0,0,0,0) 72%,rgba(10,12,8,.45) 100%)}
+.film .over{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;padding-top:calc(clamp(32px,6vh,72px) + 64px);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.film .kick{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.06em;color:var(--green)}
+.film .big{margin:10px 0 0;font-family:var(--f-dot);font-weight:900;text-transform:uppercase;font-size:clamp(3rem,7.4vw,6.4rem);line-height:.86;letter-spacing:.01em;color:var(--ink);text-wrap:balance}
+.film .big b{display:block;font-weight:900}
+.film .big span{display:block;font-size:.46em;letter-spacing:.06em;color:rgba(17,19,17,.55);margin-top:.2em}
+.film .sub{margin-top:14px;text-shadow:0 1px 12px rgba(232,233,228,.9),0 0 2px rgba(232,233,228,.8);max-width:44ch;font-size:clamp(1rem,1.6vw,1.15rem);color:rgba(17,19,17,.78)}
+.film .row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:20px}
+.film .pill.ghost{background:rgba(232,233,228,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.film .meta{position:absolute;z-index:2;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:end;gap:12px;padding:0 max(16px,env(safe-area-inset-right,0px)) 16px max(16px,env(safe-area-inset-left,0px));color:rgba(255,255,255,.82);font-family:var(--f-mono);font-size:.62rem;letter-spacing:.05em;text-transform:uppercase}
+.film .meta button{font:inherit;color:inherit;background:none;border:0;padding:6px 0;cursor:pointer;text-decoration:underline;text-underline-offset:4px}
+.film .sub a{color:inherit;text-decoration-color:currentColor}
+@media (max-aspect-ratio:3/4){.film{height:min(86svh,820px)}.film video,.film img.still{object-position:50% 60%}.film .over{padding-top:calc(clamp(20px,3vh,40px) + 60px)}.film .big{font-size:clamp(3rem,15vw,4.2rem)}.film .sub{display:none}.film .row{margin-top:16px}.film .kick{font-size:.62rem}}
+
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:28px}
 .chip{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;background:var(--raised);box-shadow:inset 0 0 0 1px var(--line);font-family:var(--f-mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.03em;color:var(--dim)}
 .chip b{font-weight:500;color:var(--ink)}
 .chip i{width:6px;height:6px;border-radius:50%;background:var(--green)}
-.portrait{position:relative;justify-self:end;width:100%;max-width:380px}
-.portrait img{display:block;width:100%;height:auto;border-radius:200px 200px 22px 22px;filter:saturate(.95)}
-.portrait figcaption{position:absolute;left:14px;bottom:14px;right:14px;display:flex;justify-content:space-between;gap:8px;color:#EDEDE8;font-family:var(--f-mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.04em}
-@media (max-width:860px){.portrait{justify-self:start;max-width:300px}}
 
 /* sections */
 section.s{padding-block:clamp(64px,10vw,128px);border-bottom:1px solid var(--line)}
@@ -258,26 +256,14 @@ section.s{padding-block:clamp(64px,10vw,128px);border-bottom:1px solid var(--lin
 .quote q::before,.quote q::after{color:var(--green)}
 .legacy{border-left:3px solid var(--green);padding-left:18px;color:var(--dim);max-width:58ch}
 
-/* chai */
-.chai{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;border-top:1px solid var(--line)}
-.chai article{padding:28px 28px 32px 0;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:12px;min-width:0}
-.chai article:nth-child(odd){border-right:1px solid var(--line)}
-.chai article:nth-child(even){padding-left:28px}
-.chai .k{font-family:var(--f-dot);font-weight:700;font-size:1rem;letter-spacing:.08em;text-transform:uppercase;color:var(--green)}
-.chai p{color:var(--dim);max-width:48ch}
-@media (max-width:760px){.chai{grid-template-columns:minmax(0,1fr)}.chai article:nth-child(odd){border-right:0}.chai article:nth-child(even){padding-left:0}}
-.dogs{position:fixed;left:0;right:0;bottom:calc(12px + env(safe-area-inset-bottom,0px));height:60px;pointer-events:none;z-index:25;overflow:hidden}
-.dog{position:absolute;bottom:0;left:-120px;width:96px;height:auto;animation:run 4.2s linear forwards}
-.dog.two{animation-delay:.5s;width:78px}
-@keyframes run{to{transform:translateX(calc(100vw + 260px))}}
-.dog .b{animation:hop .28s ease-in-out infinite alternate}
-@keyframes hop{to{transform:translateY(-4px)}}
-@media (prefers-reduced-motion: reduce){.dog{animation-duration:.01s}}
 
 /* letter */
 .letter{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,6vw,80px);align-items:start}
 @media (max-width:860px){.letter{grid-template-columns:minmax(0,1fr)}}
 .paper{background:var(--raised);border-radius:28px;box-shadow:inset 0 0 0 1px var(--line);padding:clamp(22px,4vw,40px);display:flex;flex-direction:column;gap:18px}
+.from{position:relative;margin:calc(-1 * clamp(22px,4vw,40px)) calc(-1 * clamp(22px,4vw,40px)) 4px;height:clamp(220px,26vw,300px);overflow:hidden;border-radius:28px 28px 0 0;background:var(--green)}
+.from img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 18%}
+.from figcaption{position:absolute;left:16px;bottom:14px;color:#EDEDE8}
 .paper .q{font-family:var(--f-dot);font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
 .paper label{font-family:var(--f-mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;color:var(--dim)}
 .paper input{width:100%;border:0;border-bottom:2px solid var(--ink);background:transparent;color:var(--ink);font:500 1.4rem/1.3 var(--f-sans);padding:8px 0;outline:none;border-radius:0}
@@ -303,45 +289,39 @@ footer{padding-block:clamp(48px,8vw,88px) 40px}
 @media (max-width:760px){.foot{grid-template-columns:minmax(0,1fr)}}
 .sign{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:48px;padding-top:16px;border-top:1px solid var(--line);color:var(--dim)}
 .sign .dot{font-size:1rem}
-@media (prefers-reduced-motion: reduce){.clock i{animation:none}}
 </style>
 </head>
 <body>
 
 
-<header class="bar">
+<header class="bar" id="bar">
   <div class="wrap">
     <a class="me" href="#top">Akshit</a>
-    <a class="clock mono" href="#pilot" style="text-decoration:none"><i></i><span class="where">Pilot 01&nbsp;</span><span>in progress</span></a>
+    <nav aria-label="Sections">
+      <a href="#pilot">Pilot 01</a>
+      <a href="#checkins">How I work</a>
+      <a href="#faq">FAQ</a>
+    </nav>
     <a class="pill" href="#letter">Get the letter</a>
   </div>
 </header>
 
 <main id="top">
 
-<section class="hero" aria-labelledby="h1">
-  <canvas id="field" aria-hidden="true"></canvas>
-  <div class="wrap">
-    <div>
-      <p class="ar">Architect · Developer · Writes a weekly letter</p>
-      <h1 id="h1"><span>Akshit</span><span class="small">Suraj Parmar</span></h1>
-      <p class="intro">I build homes that are meant to keep working long after the keys are handed over. My brother Abhishek and I do it at <a href="https://houseofcosmos.co/">House of Cosmos</a>.</p>
-      <div class="row">
-        <a class="pill" href="#letter">Read my weekly letter</a>
-        <a class="pill ghost" href="#pilot">See the pilot</a>
-      </div>
-      <div class="chips" aria-label="Right now">
-        <span class="chip"><i></i>Pilot <b>Trividh</b></span>
-        <span class="chip"><i></i>Late limit <b>5 min</b></span>
-        <span class="chip"><i></i>Dogs <b>2</b></span>
-      </div>
+<section class="film" aria-labelledby="h1">
+  <img class="still" id="filmStill" src="video/hero-wide-start.webp" alt="" aria-hidden="true">
+  <video id="film" muted playsinline preload="auto" aria-label="Time-lapse: a man works at a desk in an open field at sunrise while a green neighbourhood of stone and timber buildings, planted terraces, solar roofs and a water channel grows up around him"></video>
+  <div class="over">
+    <p class="kick">Architect · Developer · Writes a weekly letter</p>
+    <h1 class="big" id="h1"><b>Akshit</b> <span>Suraj Parmar</span></h1>
+    <div class="row">
+      <a class="pill" href="#letter">Read my weekly letter</a>
+      <a class="pill ghost" href="#pilot">See the pilot</a>
     </div>
-    <figure class="portrait">
-      <img src="img/akshit-suraj-parmar.webp" width="800" height="1152" alt="Akshit Suraj Parmar laughing, in a grey textured blazer and white turtleneck, seated against a green backdrop">
-      <figcaption><span>2026</span><span>Not pictured: Rambo &amp; Comet</span></figcaption>
-    </figure>
   </div>
+  <div class="meta"><span>Film made with Google Veo</span><button type="button" id="replay">Play again</button></div>
 </section>
+
 
 <section class="s" id="living" aria-labelledby="h-living">
   <div class="wrap split">
@@ -405,7 +385,7 @@ footer{padding-block:clamp(48px,8vw,88px) 40px}
       </div>
       <div class="copy">
         <p>No calls, no site visits. A whiteboard, coloured markers and one question: what keeps breaking, and what system would stop it?</p>
-        <p>Most of the frameworks come from my time in Rahul Jain's course. The check-ins are where they turn into how House of Cosmos actually runs. Everything below is running today.</p>
+        <p>Most of the frameworks come from nine months in Rahul Jain's course, which taught me what sites never did: keep the data. We now measure everything on site and off, on time, and our customers can see it on their phones. The check-ins are where it all turns into how House of Cosmos runs. Everything below is running today.</p>
         <p class="soft">The scans are from the 9 and 10 October 2026 board.</p>
       </div>
     </div>
@@ -434,19 +414,6 @@ footer{padding-block:clamp(48px,8vw,88px) 40px}
   </div>
 </section>
 
-<section class="s" id="systems" aria-labelledby="h-sys">
-  <div class="wrap split">
-    <div class="head" style="margin:0">
-      <p class="label">The classroom</p>
-      <h2 id="h-sys">Sites taught me a lot. They never taught me to keep the data.</h2>
-    </div>
-    <div class="copy">
-      <p>That lesson came from nine months in Rahul Jain's course. Construction companies, and family businesses most of all, throw away the thing that is actually worth the most: their data.</p>
-      <p>So now we measure everything, on site and off, and we collect it on time. Delayed data is corrupted data, as one of my boards puts it. We use it to answer customers faster and to hand homes over when we said we would. Our customers can see it too, on their phones.</p>
-      <p>House of Cosmos runs on systems now. Which means it runs fine on the days I am in a hotel room with a whiteboard.</p>
-    </div>
-  </div>
-</section>
 
 <section class="s" id="father" aria-labelledby="h-father">
   <div class="wrap">
@@ -459,37 +426,6 @@ footer{padding-block:clamp(48px,8vw,88px) 40px}
   </div>
 </section>
 
-<section class="s" id="chai" aria-labelledby="h-chai">
-  <div class="wrap">
-    <div class="head">
-      <p class="label">Over chai</p>
-      <h2 id="h-chai">Things you would find out about me eventually.</h2>
-    </div>
-    <div class="chai">
-      <article>
-        <p class="k">First building I loved</p>
-        <h3>The Jain temple in Thane</h3>
-        <p>As a kid I hid in its corners. The marble kept them cool, every surface had something carved into it, and the narrow passages would suddenly open into a big community hall. I still design for that moment.</p>
-      </article>
-      <article>
-        <p class="k">The Netherlands</p>
-        <h3>I came back on time</h3>
-        <p>I did my Master's in design and construction there. I came back unable to be more than five minutes late, traffic included, and a little jealous of how well Dutch cities are designed.</p>
-      </article>
-      <article>
-        <p class="k">Rambo &amp; Comet</p>
-        <h3>My dogs run this house</h3>
-        <p>When I am not productive, I am usually on the floor with them. They have no opinion on water reuse.</p>
-        <button class="pill ghost" type="button" id="letout" style="align-self:flex-start">Let them out</button>
-      </article>
-      <article>
-        <p class="k">Music</p>
-        <h3>I play music</h3>
-        <p>Usually when the board stops making sense. It helps more often than it should.</p>
-      </article>
-    </div>
-  </div>
-</section>
 
 <section class="s" id="letter" aria-labelledby="h-letter">
   <div class="wrap letter">
@@ -503,6 +439,10 @@ footer{padding-block:clamp(48px,8vw,88px) 40px}
       </div>
     </div>
     <form class="paper" id="sub" novalidate>
+      <figure class="from">
+        <img src="img/akshit-suraj-parmar.webp" width="800" height="1152" loading="lazy" alt="Akshit Suraj Parmar laughing, in a grey textured blazer and white turtleneck, against a green backdrop">
+        <figcaption class="mono">From me, every Monday</figcaption>
+      </figure>
       <p class="q">One email a week. Free.</p>
       <label for="email">Your email</label>
       <input id="email" type="email" autocomplete="email" placeholder="you@somewhere.com" required>
@@ -519,7 +459,7 @@ footer{padding-block:clamp(48px,8vw,88px) 40px}
       <h2 id="h-faq">The quick answers.</h2>
     </div>
     <div class="faq">
-      <details open><summary>Who is Akshit Suraj Parmar?</summary><p>I am an architect and real estate developer, registered with the Council of Architecture. I am Projects Director at House of Cosmos, which I run with my brother Abhishek, and I am building Trividh, my pilot project.</p></details>
+      <details open><summary>Who is Akshit Suraj Parmar?</summary><p>I am an architect and real estate developer, registered with the Council of Architecture. I did my Master's in design and construction in the Netherlands. I am Projects Director at House of Cosmos, which I run with my brother Abhishek, and I am building Trividh, my pilot project.</p></details>
       <details><summary>Are you Suraj Parmar's son?</summary><p>Yes. My father started the Cosmos legacy in 2000. House of Cosmos is its next chapter, run by my brother and me.</p></details>
       <details><summary>What is Trividh?</summary><p>A House of Cosmos residential building in Naupada. Art deco design, bird nests built into the facade, and a water system that reuses 90% of its grey and rainwater.</p></details>
       <details><summary>How do I reach you?</summary><p>Call the House of Cosmos office on +91 99202 79296 or email contact@houseofcosmos.co. If you want to meet, ask for me. I will be on time.</p></details>
@@ -555,7 +495,6 @@ footer{padding-block:clamp(48px,8vw,88px) 40px}
   </div>
 </footer>
 
-<div class="dogs" id="dogs" aria-hidden="true"></div>
 
 <script>
 (function(){
@@ -564,35 +503,21 @@ footer{padding-block:clamp(48px,8vw,88px) 40px}
 
   document.getElementById('yr').textContent=new Date().getFullYear();
 
-  /* hero dot field */
-  var cv=document.getElementById('field'), cx=cv.getContext('2d'), dots=[], G=22, W=0,H=0, px=-999,py=-999, dpr=Math.min(window.devicePixelRatio||1,2), t0=performance.now();
-  function size(){
-    var r=cv.getBoundingClientRect(); W=r.width; H=r.height;
-    cv.width=W*dpr; cv.height=H*dpr; cx.setTransform(dpr,0,0,dpr,0,0);
-    dots=[]; for(var y=G/2;y<H;y+=G){for(var x=G/2;x<W;x+=G){dots.push({x:x,y:y,e:0});}}
-  }
-  function draw(now){
-    var ink=css('--ink'), green=css('--green'), t=(now-t0)/1000;
-    cx.clearRect(0,0,W,H);
-    for(var i=0;i<dots.length;i++){
-      var d=dots[i], dx=d.x-px, dy=d.y-py, dist=Math.sqrt(dx*dx+dy*dy);
-      if(dist<130){d.e=Math.max(d.e,1-dist/130);} else d.e*=0.94;
-      var wave=reduce?0:Math.max(0,Math.sin((d.x*0.012)+(d.y*0.006)-t*1.1))*0.18;
-      var e=Math.min(1,d.e+wave*0.4);
-      cx.globalAlpha=0.12+e*0.75;
-      cx.fillStyle=d.e>0.15?green:ink;
-      cx.beginPath(); cx.arc(d.x,d.y,1.1+e*2.4,0,6.283); cx.fill();
-    }
-    cx.globalAlpha=1;
-    if(!reduce && heroOn) requestAnimationFrame(draw);
-  }
-  var hero=document.querySelector('.hero');
-  hero.addEventListener('pointermove',function(e){var r=cv.getBoundingClientRect();px=e.clientX-r.left;py=e.clientY-r.top; if(reduce) draw(performance.now());});
-  hero.addEventListener('pointerleave',function(){px=py=-999;});
-  addEventListener('resize',function(){size(); if(reduce) draw(performance.now());});
-  var heroOn=true;
-  try{new IntersectionObserver(function(es){var was=heroOn;heroOn=es[0].isIntersecting;if(heroOn&&!was&&!reduce)requestAnimationFrame(draw);}).observe(hero);}catch(e){}
-  size(); requestAnimationFrame(draw);
+  /* top bar: transparent over the film, solid after it */
+  var bar=document.getElementById('bar'), filmSec=document.querySelector('.film');
+  function barState(){ bar.classList.toggle('solid', filmSec.getBoundingClientRect().bottom < 72); }
+  addEventListener('scroll',barState,{passive:true}); barState();
+
+  /* opening film: plays once, holds on the grown city */
+  var film=document.getElementById('film'), still=document.getElementById('filmStill');
+  var tall=matchMedia('(max-aspect-ratio: 3/4)').matches, base='video/hero-'+(tall?'tall':'wide');
+  still.src=base+(reduce?'-end':'-start')+'.webp';
+  film.poster=base+'-start.webp';
+  function play(){ if(reduce){ film.hidden=true; return; } film.hidden=false; try{ film.currentTime=0; var p=film.play(); if(p&&p.catch) p.catch(function(){ film.hidden=true; still.src=base+'-end.webp'; }); }catch(e){} }
+  film.src=base+'.mp4';
+  film.addEventListener('ended',function(){ still.src=base+'-end.webp'; });
+  document.getElementById('replay').addEventListener('click',function(){ reduce=false; play(); });
+  play();
 
   /* pilot: block model */
   var NS='http://www.w3.org/2000/svg', svg=document.getElementById('model');
@@ -692,20 +617,6 @@ footer{padding-block:clamp(48px,8vw,88px) 40px}
     rtabs.forEach(function(x){x.setAttribute('aria-pressed',String(x===t));});
     rpanels.forEach(function(p){p.hidden=p.dataset.g!==t.dataset.g;});
   });});
-
-  /* Rambo & Comet */
-  var DOG=["..........##",".........###","#........####","##.......###.",".#########...",".#########...",".##.....##...",".#.......#..."];
-  function dogSvg(){
-    var s='<svg viewBox="0 0 130 80" xmlns="http://www.w3.org/2000/svg"><g class="b">';
-    DOG.forEach(function(row,y){ for(var x=0;x<row.length;x++){ if(row[x]==='#') s+='<circle cx="'+(x*10+5)+'" cy="'+(y*10+5)+'" r="4.2" fill="'+css('--ink')+'"/>'; } });
-    return s+'<circle cx="115" cy="15" r="2" fill="'+css('--signal')+'"/></g></svg>';
-  }
-  var running=false;
-  document.getElementById('letout').addEventListener('click',function(){
-    if(running) return; running=true; var box=document.getElementById('dogs'); box.innerHTML='';
-    ['one','two'].forEach(function(k){var d=document.createElement('div'); d.className='dog '+k; d.innerHTML=dogSvg(); box.appendChild(d);});
-    setTimeout(function(){box.innerHTML='';running=false;},5200);
-  });
 
   /* subscribe: until a newsletter service is chosen, joining is a pre-filled email to Akshit */
   var ME='akshitparmar28@gmail.com';
