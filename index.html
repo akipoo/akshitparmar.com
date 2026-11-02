@@ -121,6 +121,8 @@
 }
 
 *{box-sizing:border-box}
+html,body{margin:0;padding:0}
+img{max-width:100%}
 html{scroll-padding-top:72px}
 body{background:var(--ground);color:var(--ink);font:400 1.06rem/1.6 var(--f-sans);font-optical-sizing:auto;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--ground)}
@@ -163,7 +165,7 @@ h3{font-family:var(--f-dot);font-weight:800;font-size:1.3rem;letter-spacing:.02e
 .pill{white-space:nowrap}
 
 /* film hero: full-bleed generated film of a city growing around Akshit at work */
-.film{position:relative;height:min(88svh,880px);min-height:560px;overflow:hidden;background:#c9c6bd}
+.film{position:relative;height:100vh;height:100svh;min-height:520px;overflow:hidden;background:#c9c6bd}
 .film video,.film img.still{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 70%}
 .film::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(232,233,228,.55) 0%,rgba(232,233,228,.18) 16%,rgba(232,233,228,0) 30%)}
 /* overlay "boot, then dock": the name switches on in the empty sky, then docks bottom-left as the city grows */
@@ -194,7 +196,7 @@ h3{font-family:var(--f-dot);font-weight:800;font-size:1.3rem;letter-spacing:.02e
 .film .pill:not(.ghost):hover{background:var(--green);color:#F4F4F0}
 .film .meta{position:absolute;z-index:2;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:end;gap:12px;padding:0 max(16px,env(safe-area-inset-right,0px)) 16px max(16px,env(safe-area-inset-left,0px));color:rgba(255,255,255,.82);font-family:var(--f-mono);font-size:.62rem;letter-spacing:.05em;text-transform:uppercase}
 .film .meta button{font:inherit;color:inherit;background:none;border:0;padding:6px 0;cursor:pointer;text-decoration:underline;text-underline-offset:4px}
-@media (max-aspect-ratio:3/4){.film{height:min(86svh,820px)}.film video,.film img.still{object-position:50% 60%}.film .title{bottom:50px;right:max(16px,env(safe-area-inset-right,0px))}.film .big{font-size:clamp(2.6rem,13vw,3.6rem)}.film .kick{font-size:.62rem}.film .note{font-size:.62rem}.film .shade{height:70%;background:linear-gradient(0deg,rgba(8,10,6,.66) 0%,rgba(8,10,6,.3) 50%,rgba(8,10,6,0) 100%)}}
+@media (max-aspect-ratio:3/4){.film{min-height:480px}.film video,.film img.still{object-position:50% 60%}.film .title{bottom:50px;right:max(16px,env(safe-area-inset-right,0px))}.film .big{font-size:clamp(2.6rem,13vw,3.6rem)}.film .kick{font-size:.62rem}.film .note{font-size:.62rem}.film .shade{height:70%;background:linear-gradient(0deg,rgba(8,10,6,.66) 0%,rgba(8,10,6,.3) 50%,rgba(8,10,6,0) 100%)}}
 @media (prefers-reduced-motion: reduce){.film .title.glide{transition:none}.film[data-state="boot"] .ch{animation:none;opacity:1}}
 
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:28px}
