@@ -165,20 +165,37 @@ h3{font-family:var(--f-dot);font-weight:800;font-size:1.3rem;letter-spacing:.02e
 /* film hero: full-bleed generated film of a city growing around Akshit at work */
 .film{position:relative;height:min(88svh,880px);min-height:560px;overflow:hidden;background:#c9c6bd}
 .film video,.film img.still{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 70%}
-.film::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(232,233,228,.78) 0%,rgba(232,233,228,.35) 26%,rgba(232,233,228,0) 46%,rgba(0,0,0,0) 72%,rgba(10,12,8,.45) 100%)}
-.film .over{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;padding-top:calc(clamp(32px,6vh,72px) + 64px);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.film::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(232,233,228,.55) 0%,rgba(232,233,228,.18) 16%,rgba(232,233,228,0) 30%)}
+/* overlay "boot, then dock": the name switches on in the empty sky, then docks bottom-left as the city grows */
+.film .shade{position:absolute;inset:auto 0 0 0;height:62%;z-index:1;pointer-events:none;background:radial-gradient(120% 90% at 0% 100%,rgba(8,10,6,.62) 0%,rgba(8,10,6,.28) 45%,rgba(8,10,6,0) 72%);opacity:0;transition:opacity 1.2s ease}
+.film[data-state="dock"] .shade,.film[data-state="done"] .shade{opacity:1}
+.film .over{position:absolute;inset:0;z-index:2;pointer-events:none}
+.film .title{position:absolute;left:max(16px,env(safe-area-inset-left,0px));bottom:58px;max-width:min(92%,640px);pointer-events:auto;transform-origin:0 0;will-change:transform}
+.film .title.glide{transition:transform 1.5s cubic-bezier(.65,0,.2,1)}
 .film .kick a{color:inherit;text-decoration-color:currentColor}
-.film .kick{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.06em;color:var(--green)}
-.film .big{margin:10px 0 0;font-family:var(--f-dot);font-weight:900;text-transform:uppercase;font-size:clamp(3rem,7.4vw,6.4rem);line-height:.86;letter-spacing:.01em;color:var(--ink);text-wrap:balance}
+.film .kick{margin:0;font-family:var(--f-mono);font-size:.74rem;letter-spacing:.06em;color:var(--green);transition:color 1s ease}
+.film .big{margin:8px 0 0;font-family:var(--f-dot);font-weight:900;text-transform:uppercase;font-size:clamp(2.6rem,5.6vw,4.8rem);line-height:.86;letter-spacing:.01em;color:var(--ink);transition:color 1s ease}
 .film .big b{display:block;font-weight:900}
-.film .big span{display:block;font-size:.46em;letter-spacing:.06em;color:rgba(17,19,17,.55);margin-top:.2em}
-.film .sub{margin-top:14px;text-shadow:0 1px 12px rgba(232,233,228,.9),0 0 2px rgba(232,233,228,.8);max-width:44ch;font-size:clamp(1rem,1.6vw,1.15rem);color:rgba(17,19,17,.78)}
-.film .row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:20px}
-.film .pill.ghost{background:rgba(232,233,228,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.film .big span.l2{display:block;font-size:.46em;letter-spacing:.06em;color:rgba(17,19,17,.55);margin-top:.2em;transition:color 1s ease}
+.film .ch{display:inline-block;white-space:pre}
+.film[data-state="boot"] .ch{opacity:0;animation:flick .9s steps(1,end) forwards}
+@keyframes flick{0%{opacity:0}12%{opacity:1}22%{opacity:.15}34%{opacity:1}46%{opacity:.4}58%{opacity:1}100%{opacity:1}}
+.film[data-state="dock"] .kick,.film[data-state="done"] .kick{color:#9FD9BE}
+.film[data-state="dock"] .big,.film[data-state="done"] .big{color:#F4F4F0}
+.film[data-state="dock"] .big span.l2,.film[data-state="done"] .big span.l2{color:rgba(244,244,240,.72)}
+.film .note{margin:14px 0 0;min-height:1.4em;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;color:rgba(244,244,240,.88)}
+.film .note .cur{display:inline-block;width:.55em;height:1em;margin-left:2px;vertical-align:-2px;background:currentColor;animation:cur 1s steps(2,start) infinite}
+@keyframes cur{50%{opacity:0}}
+.film .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;opacity:0;transform:translateY(8px);transition:opacity .7s ease,transform .7s ease;pointer-events:none}
+.film[data-state="done"] .row{opacity:1;transform:none;pointer-events:auto}
+.film .pill.ghost{background:rgba(232,233,228,.16);color:#F4F4F0;box-shadow:inset 0 0 0 1.5px rgba(244,244,240,.8);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.film .pill.ghost:hover{background:rgba(244,244,240,.9);color:var(--ink)}
+.film .pill:not(.ghost){background:#F4F4F0;color:var(--ink)}
+.film .pill:not(.ghost):hover{background:var(--green);color:#F4F4F0}
 .film .meta{position:absolute;z-index:2;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:end;gap:12px;padding:0 max(16px,env(safe-area-inset-right,0px)) 16px max(16px,env(safe-area-inset-left,0px));color:rgba(255,255,255,.82);font-family:var(--f-mono);font-size:.62rem;letter-spacing:.05em;text-transform:uppercase}
 .film .meta button{font:inherit;color:inherit;background:none;border:0;padding:6px 0;cursor:pointer;text-decoration:underline;text-underline-offset:4px}
-.film .sub a{color:inherit;text-decoration-color:currentColor}
-@media (max-aspect-ratio:3/4){.film{height:min(86svh,820px)}.film video,.film img.still{object-position:50% 60%}.film .over{padding-top:calc(clamp(20px,3vh,40px) + 60px)}.film .big{font-size:clamp(3rem,15vw,4.2rem)}.film .sub{display:none}.film .row{margin-top:16px}.film .kick{font-size:.62rem}}
+@media (max-aspect-ratio:3/4){.film{height:min(86svh,820px)}.film video,.film img.still{object-position:50% 60%}.film .title{bottom:50px;right:max(16px,env(safe-area-inset-right,0px))}.film .big{font-size:clamp(2.6rem,13vw,3.6rem)}.film .kick{font-size:.62rem}.film .note{font-size:.62rem}.film .shade{height:70%;background:linear-gradient(0deg,rgba(8,10,6,.66) 0%,rgba(8,10,6,.3) 50%,rgba(8,10,6,0) 100%)}}
+@media (prefers-reduced-motion: reduce){.film .title.glide{transition:none}.film[data-state="boot"] .ch{animation:none;opacity:1}}
 
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:28px}
 .chip{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;background:var(--raised);box-shadow:inset 0 0 0 1px var(--line);font-family:var(--f-mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.03em;color:var(--dim)}
@@ -312,15 +329,19 @@ footer{padding-block:clamp(48px,8vw,88px) 40px}
 
 <main id="top">
 
-<section class="film" aria-labelledby="h1">
+<section class="film" id="filmSec" data-state="done" aria-labelledby="h1">
   <img class="still" id="filmStill" src="video/hero-wide-start.webp" alt="" aria-hidden="true">
   <video id="film" muted playsinline preload="auto" aria-label="Time-lapse: a man works at a desk in an open field at sunrise while a green neighbourhood of stone and timber buildings, planted terraces, solar roofs and a water channel grows up around him"></video>
+  <div class="shade" aria-hidden="true"></div>
   <div class="over">
-    <p class="kick">Architect · Projects Director, <a href="https://houseofcosmos.co/">House of Cosmos</a></p>
-    <h1 class="big" id="h1"><b>Akshit</b> <span>Suraj Parmar</span></h1>
-    <div class="row">
-      <a class="pill" href="#letter">Read my weekly letter</a>
-      <a class="pill ghost" href="#pilot">See the pilot</a>
+    <div class="title" id="title">
+      <p class="kick">Architect · Projects Director, <a href="https://houseofcosmos.co/">House of Cosmos</a></p>
+      <h1 class="big" id="h1" aria-label="Akshit Suraj Parmar"><b>Akshit</b> <span class="l2">Suraj Parmar</span></h1>
+      <p class="note" id="note" aria-hidden="true"></p>
+      <div class="row">
+        <a class="pill" href="#letter">Read my weekly letter</a>
+        <a class="pill ghost" href="#pilot">See the pilot</a>
+      </div>
     </div>
   </div>
   <div class="meta"><span>Film made with Google Veo</span><button type="button" id="replay">Play again</button></div>
@@ -512,14 +533,51 @@ footer{padding-block:clamp(48px,8vw,88px) 40px}
   function barState(){ bar.classList.toggle('solid', filmSec.getBoundingClientRect().bottom < 72); }
   addEventListener('scroll',barState,{passive:true}); barState();
 
-  /* opening film: plays once, holds on the grown city */
+  /* opening film + overlay: boot (name switches on in the sky) -> dock (glides bottom-left as the city grows) -> done (caption types, buttons appear) */
   var film=document.getElementById('film'), still=document.getElementById('filmStill');
+  var sec=document.getElementById('filmSec'), title=document.getElementById('title'), note=document.getElementById('note');
   var tall=matchMedia('(max-aspect-ratio: 3/4)').matches, base='video/hero-'+(tall?'tall':'wide');
+  var NOTE='Trividh, 2036 · 90% of grey and rainwater reused';
   still.src=base+(reduce?'-end':'-start')+'.webp';
   film.poster=base+'-start.webp';
-  function play(){ if(reduce){ film.hidden=true; return; } film.hidden=false; try{ film.currentTime=0; var p=film.play(); if(p&&p.catch) p.catch(function(){ film.hidden=true; still.src=base+'-end.webp'; }); }catch(e){} }
   film.src=base+'.mp4';
-  film.addEventListener('ended',function(){ still.src=base+'-end.webp'; });
+  /* split the name into letters for the switch-on flicker (text stays a normal H1) */
+  [].forEach.call(document.querySelectorAll('#h1 b, #h1 .l2'),function(el){
+    var t=el.textContent; el.textContent='';
+    for(var i=0;i<t.length;i++){var c=document.createElement('span'); c.className='ch'; c.setAttribute('aria-hidden','true'); c.textContent=t[i]; el.appendChild(c);}
+  });
+  var chars=[].slice.call(document.querySelectorAll('#h1 .ch')), timers=[], typing=0;
+  function clearT(){ timers.forEach(clearTimeout); timers=[]; clearInterval(typing); }
+  function skyTransform(){
+    title.style.transform='none';
+    var f=sec.getBoundingClientRect(), r=title.getBoundingClientRect();
+    var s=Math.min((f.width*(tall?.86:.62))/r.width, tall?1.25:1.7);
+    var cx=f.width/2, cy=(tall?.22:.30)*f.height+20;
+    var dx=cx-(r.left-f.left)-r.width*s/2, dy=cy-(r.top-f.top)-r.height*s/2;
+    return 'translate('+dx.toFixed(1)+'px,'+dy.toFixed(1)+'px) scale('+s.toFixed(3)+')';
+  }
+  function setState(st){ sec.setAttribute('data-state',st); }
+  function typeNote(){ var i=0; note.textContent=''; clearInterval(typing);
+    typing=setInterval(function(){ i++; note.innerHTML=NOTE.slice(0,i).replace(/&/g,'&amp;')+'<span class="cur"></span>'; if(i>=NOTE.length) clearInterval(typing); },32); }
+  function boot(){
+    clearT(); note.textContent=''; title.classList.remove('glide');
+    setState('boot'); title.style.transform=skyTransform();
+    var order=chars.map(function(_,i){return i;}).sort(function(){return Math.random()-.5;});
+    order.forEach(function(ci,k){ chars[ci].style.animationDelay=(0.15+k*0.09)+'s'; });
+  }
+  var docked=false;
+  function dock(){ if(docked) return; docked=true; title.classList.add('glide'); setState('dock'); requestAnimationFrame(function(){ title.style.transform='none'; }); }
+  function done(){ dock(); setState('done'); typeNote(); still.src=base+'-end.webp'; }
+  function finished(){ clearT(); title.classList.remove('glide'); title.style.transform='none'; docked=true; setState('done'); note.textContent=NOTE; }
+  function play(){
+    if(reduce){ film.hidden=true; finished(); return; }
+    film.hidden=false; docked=false; boot();
+    try{ film.currentTime=0; var p=film.play(); if(p&&p.catch) p.catch(function(){ film.hidden=true; still.src=base+'-end.webp'; finished(); }); }catch(e){ finished(); }
+    timers.push(setTimeout(dock,3600)); timers.push(setTimeout(function(){ if(sec.getAttribute('data-state')!=='done') done(); },11500));
+  }
+  film.addEventListener('timeupdate',function(){ if(!docked && film.currentTime>=2.8) dock(); });
+  film.addEventListener('ended',function(){ clearT(); done(); });
+  addEventListener('resize',function(){ if(sec.getAttribute('data-state')==='boot'){ title.classList.remove('glide'); title.style.transform=skyTransform(); } });
   document.getElementById('replay').addEventListener('click',function(){ reduce=false; play(); });
   play();
 
