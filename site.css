@@ -249,17 +249,21 @@ footer{padding-block:clamp(48px,8vw,88px) 40px}
 .next:hover{color:inherit;box-shadow:inset 0 0 0 1.5px var(--ink)}
 .next h3{font-size:clamp(1.4rem,3vw,2.2rem);font-weight:900;margin-top:8px;text-wrap:balance}
 .next .arrow{font-family:var(--f-dot);font-weight:900;font-size:clamp(2rem,5vw,3.4rem);color:var(--green)}
-/* Common Grounds: Maslow ladder, widest step at the bottom */
-.ladder{list-style:none;margin:clamp(28px,4vw,44px) 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
-.ladder li{display:grid;grid-template-columns:clamp(96px,14vw,150px) minmax(110px,.32fr) minmax(0,1fr);gap:clamp(12px,2.4vw,28px);align-items:center;background:var(--raised);border-radius:18px;box-shadow:inset 0 0 0 1px var(--line);padding:14px clamp(14px,2.4vw,24px)}
-.ladder .lv{display:flex;gap:6px}
-.ladder .lv i{width:clamp(10px,1.4vw,14px);height:clamp(10px,1.4vw,14px);border-radius:50%;background:var(--green)}
-.ladder li:first-child .lv i{background:var(--signal)}
-.ladder .k{font-family:var(--f-dot);font-weight:800;letter-spacing:.06em;text-transform:uppercase}
-.ladder p:last-child{color:var(--dim)}
-@media (max-width:620px){.ladder li{grid-template-columns:minmax(0,1fr);gap:6px}}
 .bar nav a[aria-current="page"]{color:var(--ink);text-decoration:underline;text-decoration-color:var(--signal)}
-.pyr{display:flex;flex-direction:column;align-items:center;gap:clamp(8px,1.2vw,12px)}
-.pyr>span{display:flex;gap:clamp(8px,1.2vw,12px)}
-.pyr i{width:clamp(14px,2vw,22px);height:clamp(14px,2vw,22px);border-radius:50%;background:var(--green)}
-.pyr>span:first-child i{background:var(--signal)}
+/* Common Grounds: Gehl's three kinds of activity as dot fields (5 x 3) */
+.field{display:grid;grid-template-columns:repeat(5,clamp(10px,1.3vw,14px));gap:clamp(6px,.9vw,9px)}
+.field i{width:100%;aspect-ratio:1;border-radius:50%;background:color-mix(in srgb,var(--ink) 12%,var(--raised))}
+.field i.on{background:var(--green)}
+.field.soc i.on{background:var(--signal)}
+.kinds{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:clamp(28px,4vw,44px)}
+@media (max-width:860px){.kinds{grid-template-columns:minmax(0,1fr)}}
+.kind{background:var(--raised);border-radius:24px;box-shadow:inset 0 0 0 1px var(--line);padding:clamp(18px,2.6vw,26px);display:flex;flex-direction:column;gap:14px;min-width:0}
+.kind .k{font-family:var(--f-dot);font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--green)}
+.kind h3{font-size:clamp(1.25rem,2vw,1.55rem);font-weight:900}
+.kind p{color:var(--dim)}
+.kind p b{color:var(--ink);font-weight:500}
+.trio{display:flex;align-items:flex-end;gap:clamp(14px,2.4vw,26px)}
+.trio>span{display:flex;flex-direction:column;align-items:center;gap:8px}
+.trio small{font-family:var(--f-mono);font-size:.58rem;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
+.credit{margin-top:18px}
+.trio .field{grid-template-columns:repeat(5,clamp(9px,.8vw,10px));gap:clamp(6px,.6vw,7px)}
