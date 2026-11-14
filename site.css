@@ -212,8 +212,9 @@ footer{padding-block:clamp(48px,8vw,88px) 40px}
 
 /* ---- multi-page additions (14 Nov 2026) ---- */
 /* two pilots on the home page */
-.pilots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:clamp(32px,5vw,56px)}
-@media (max-width:860px){.pilots{grid-template-columns:minmax(0,1fr)}}
+.pilots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:clamp(32px,5vw,56px)}
+@media (max-width:1080px){.pilots{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:700px){.pilots{grid-template-columns:minmax(0,1fr)}}
 .pc{background:var(--raised);border-radius:28px;box-shadow:inset 0 0 0 1px var(--line);padding:clamp(16px,2.6vw,26px);display:flex;flex-direction:column;gap:14px;text-decoration:none;color:inherit;min-width:0;transition:box-shadow .25s,transform .25s}
 .pc:hover{color:inherit;box-shadow:inset 0 0 0 1.5px var(--ink);transform:translateY(-3px)}
 .pc .vis{aspect-ratio:16/10;border-radius:18px;background:var(--ground);display:flex;align-items:center;justify-content:center;overflow:hidden;padding:14px}
@@ -258,3 +259,7 @@ footer{padding-block:clamp(48px,8vw,88px) 40px}
 .ladder p:last-child{color:var(--dim)}
 @media (max-width:620px){.ladder li{grid-template-columns:minmax(0,1fr);gap:6px}}
 .bar nav a[aria-current="page"]{color:var(--ink);text-decoration:underline;text-decoration-color:var(--signal)}
+.pyr{display:flex;flex-direction:column;align-items:center;gap:clamp(8px,1.2vw,12px)}
+.pyr>span{display:flex;gap:clamp(8px,1.2vw,12px)}
+.pyr i{width:clamp(14px,2vw,22px);height:clamp(14px,2vw,22px);border-radius:50%;background:var(--green)}
+.pyr>span:first-child i{background:var(--signal)}
