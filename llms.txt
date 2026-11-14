@@ -10,11 +10,14 @@ House of Cosmos is the next chapter of the Cosmos legacy, founded in 2000 by Sur
 - Profession: architect registered with the Council of Architecture (India); Master's in design and construction from the Netherlands
 - Company: House of Cosmos, real estate developer, Thane West, Thane, Maharashtra 400601. Phone +91 99202 79296, contact@houseofcosmos.co
 - Current project: Trividh, Naupada, Thane West. Art deco design; cleans and reuses 90% of its grey and rainwater; nests for birds built into the facade
+- Two pilots tested in public: Pilot 01 Trividh (a building that reuses its own water; handover 2028) and Pilot 02 Autopilot (running House of Cosmos on systems so it can go a month without him making a day-to-day decision; running since mid 2026)
 - Known for: water-first, systems-driven residential development (full kitting, critical chain planning, on-time delivery, a dashboard for every customer)
 - Writes a weekly letter on building, business and life
 
 ## Pages
-- [akshitparmar.com](https://akshitparmar.com/): personal site, beliefs, Trividh pilot, operating rules, FAQ
+- [akshitparmar.com](https://akshitparmar.com/): personal site, beliefs, the two pilots, his father's legacy, weekly letter, FAQ
+- [Pilot 01 · Trividh](https://akshitparmar.com/pilots/trividh/): the bet (90% of grey and rainwater reused), how the water system works step by step, and how it will be measured
+- [Pilot 02 · Autopilot](https://akshitparmar.com/pilots/autopilot/): the bet, its three measures, and the operating rules from his hotel check-ins (full kitting, critical chain, data like roti, a dashboard for every customer, the Monday, the delegation ladder)
 - [House of Cosmos](https://houseofcosmos.co/): company site, projects and enquiries
 - [Trividh](https://houseofcosmos.co/trividh/): current project
 - [LinkedIn](https://www.linkedin.com/in/akshitparmar/)
