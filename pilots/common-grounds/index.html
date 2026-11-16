@@ -138,12 +138,14 @@
       <h2 id="h-letter">Follow the rooftop.</h2>
       <p>Every week I write a letter to my family and close friends. What works on the rooftop, and what I would build differently, goes in there.</p>
     </div>
-    <form class="paper" id="sub" novalidate>
+    <form class="paper" id="sub" name="letter" method="POST" data-netlify="true" netlify-honeypot="company" novalidate>
+      <input type="hidden" name="form-name" value="letter"><input type="hidden" name="page" value="">
+      <p hidden><label>Leave this empty <input name="company"></label></p>
       <p class="q">One email a week. Free.</p>
       <label for="email">Your email</label>
-      <input id="email" type="email" autocomplete="email" placeholder="you@somewhere.com" required>
+      <input id="email" name="email" type="email" autocomplete="email" placeholder="you@somewhere.com" required>
       <button class="pill" type="submit" id="subBtn" style="align-self:flex-start">Join the letter</button>
-      <p class="fine" id="subMsg" aria-live="polite">Your email app opens with a short note to me. Hit send and you are on the list. I read every reply.</p>
+      <p class="fine" id="subMsg" aria-live="polite">One letter every Monday, from me. Unsubscribe any time with one click.</p>
     </form>
   </div>
 </section>

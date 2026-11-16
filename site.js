@@ -171,14 +171,19 @@
   });});
 
   if(document.getElementById("sub")) (function(){
-  /* subscribe: until a newsletter service is chosen, joining is a pre-filled email to Akshit */
-  var ME='akshitparmar28@gmail.com';
-  document.getElementById('sub').addEventListener('submit',function(e){
-    e.preventDefault(); var v=document.getElementById('email').value.trim(), m=document.getElementById('subMsg');
+  /* subscribe: the form posts to Netlify Forms; each Monday the new emails are added to the Brevo list */
+  var ME='akshitparmar28@gmail.com', f=document.getElementById('sub');
+  f.addEventListener('submit',function(e){
+    e.preventDefault(); var v=document.getElementById('email').value.trim(), m=document.getElementById('subMsg'), btn=document.getElementById('subBtn');
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){ m.textContent='That email looks off. Check it and try again.'; m.classList.remove('done'); return; }
-    var href='mailto:'+ME+'?subject='+encodeURIComponent('Add me to the letter')+'&body='+encodeURIComponent('Hi Akshit, please add '+v+' to your weekly letter.');
-    try{ location.href=href; }catch(err){}
-    m.innerHTML='If your email app did not open, write to <b>'+ME+'</b> with the subject \u201cAdd me to the letter\u201d.'; m.classList.add('done');
+    var data=new URLSearchParams(new FormData(f)); data.set('page',location.pathname);
+    btn.disabled=true; m.textContent='Adding you\u2026';
+    fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:data.toString()})
+      .then(function(r){ if(!r.ok) throw 0;
+        m.innerHTML='<b>You\u2019re in.</b> The next letter reaches you on Monday morning.'; m.classList.add('done'); f.querySelector('input[type=email]').value=''; })
+      .catch(function(){
+        m.innerHTML='That didn\u2019t go through. Write to <a href="mailto:'+ME+'?subject='+encodeURIComponent('Add me to the letter')+'">'+ME+'</a> and I\u2019ll add you.'; })
+      .then(function(){ btn.disabled=false; });
   });
   })();
 })();
