@@ -24,3 +24,11 @@ House of Cosmos is the next chapter of the Cosmos legacy, founded in 2000 by Sur
 - [House of Cosmos](https://houseofcosmos.co/): company site, projects and enquiries
 - [Trividh](https://houseofcosmos.co/trividh/): current project
 - [LinkedIn](https://www.linkedin.com/in/akshitparmar/)
+
+<!-- letters -->
+## Letters
+
+Weekly letters, newest first. Archive: https://akshitparmar.com/letters/ · RSS: https://akshitparmar.com/letters/feed.xml
+
+- [The secret to inevitable success, I guess](https://akshitparmar.com/letters/the-secret-to-inevitable-success/) (2026-11-13): Every week, my batch-mates and I share what moved in our businesses. Some of it is small and measured, like a process that finally held for a full month or a number that crept up without anyone…
+<!-- /letters -->
